@@ -1,7 +1,11 @@
+## Weibull distribution plot in Shiny
+## Author: Pawel Cwiek [aut,cre]
+## License: GPL-3
+
+
 from numpy import arange
 import math
 import matplotlib.pyplot as plt
-#import matplotlib.font_manager as font_manager
 import pandas as pd
 from pathlib import Path
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
@@ -64,7 +68,6 @@ def server(input: Inputs, output: Outputs, session: Session):
         ddist = pd.DataFrame(data=arange(0,30,0.1), columns=['wind_speed'])
         ddist['probability'] = ddist['wind_speed'].apply(lambda x: weibull(c, k, x))
         fig, ax = plt.subplots()
-        #font=font_manager.FontProperties(family='Oswald')
         
         ax.plot(ddist.wind_speed, ddist.probability, color='#A52A2A',   
                 label='Weibull distribution\nc={:.2f}\nk={:.2f}'.format(c,k) )
